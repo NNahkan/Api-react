@@ -1,6 +1,7 @@
 import React from "react";
 import DayCard from "./DayCard";
 import DegreeToggle from "./DegreeToggle";
+// eslint-disable-next-line
 import { WEATHER_API, WEATHER_URL } from "../constants";
 import WeatherService from "./service";
 
