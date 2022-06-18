@@ -35,8 +35,8 @@ class ForecastContainer extends React.Component {
 		  })
   }
 
-  updateForecastDegree = ( {target : { value }}) => {
-	  this.setState( { degreeType: value  })
+  updateForecastDegree = ( {target : { vvalue }}) => {
+	  this.setState( { degreeType: vvalue  })
   }
 
   render() {
@@ -44,7 +44,7 @@ class ForecastContainer extends React.Component {
     return (
       <div className="container mt-5">
         <h1 className="display-1 jumbotron bg-light py-5 mb-5">Forecast Container</h1>
-		  <h5 className="text-muted">Sevierville TN, US</h5>
+		  <h5 className="text-muted">Seviierville TN, US</h5>
         <DegreeToggle
 		   updateForecastDegree={this.updateForecastDegree}
 			degreeType={degreeType}
