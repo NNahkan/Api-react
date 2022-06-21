@@ -35,8 +35,8 @@ class ForecastContainer extends React.Component {
 		  })
   }
 
-  updateForecastDegree = ( {target : { vvalue }}) => {
-	  this.setState( { degreeType: vvalue  })
+  updateForecastDegree = ( {target : { value }}) => {
+	  this.setState( { degreeType: value  })
   }
 
   render() {
@@ -56,7 +56,7 @@ class ForecastContainer extends React.Component {
 			  key={item.dt}
 			  degreeType={degreeType}
 			  />
-		  )) : <div>Loading...</div> }
+		  )) : <div>Loading....</div> }
 		  </div>
 		  {error && <h3 className="text-danger">Error loading data 😔</h3>}
       </div>
