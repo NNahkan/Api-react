@@ -44,7 +44,7 @@ class ForecastContainer extends React.Component {
     return (
       <div className="container mt-5">
         <h1 className="display-1 jumbotron bg-light py-5 mb-5">Forecast Container</h1>
-		  <h5 className="text-muted">Seviierville TN, US</h5>
+		  <h5 className="text-muted">Sevierville TN, US</h5>
         <DegreeToggle
 		   updateForecastDegree={this.updateForecastDegree}
 			degreeType={degreeType}
@@ -56,7 +56,7 @@ class ForecastContainer extends React.Component {
 			  key={item.dt}
 			  degreeType={degreeType}
 			  />
-		  )) : <div>Loading....</div> }
+		  )) : <div>Loading...</div> }
 		  </div>
 		  {error && <h3 className="text-danger">Error loading data 😔</h3>}
       </div>
