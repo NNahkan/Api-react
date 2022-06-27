@@ -7,7 +7,7 @@ const DayCard =  ({ data, degreeType }) => {
 	const newDate = new Date();
 	newDate.setTime(dt * 1000);
 
-	const icon = `owf owf-${imgId} owf-5zx`;
+	const icon = `owf-${imgId}`;
 
 	const fahrenheit = Math.round(temp);
 	const celsius = Math.round( ( fahrenheit - 32) * (5 / 9) )

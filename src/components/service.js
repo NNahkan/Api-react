@@ -13,7 +13,7 @@ class WeatherService {
 							temp: item.main.temp,
 							dt: item.dt,
 							date: item.dt_txt,
-							imgId: item.weather[0].icon,
+							imgId: item.weather[0].id,
 							desc: item.weather[0].description,
 						}));
 					success({ response, data})

@@ -4,6 +4,7 @@ import DegreeToggle from "./DegreeToggle";
 // eslint-disable-next-line
 import { WEATHER_API, WEATHER_URL } from "../constants";
 import WeatherService from "./service";
+import ".../public/owfont-master/css/owfont-regular.min.css"
 
 const weather = new WeatherService();
 class ForecastContainer extends React.Component {
@@ -43,6 +44,7 @@ class ForecastContainer extends React.Component {
 	  const { loading, error, data, degreeType } = this.state;
     return (
       <div className="container mt-5">
+			<i className="owf-762"/>
         <h1 className="display-1 jumbotron bg-light py-5 mb-5">Forecast Container</h1>
 		  <h5 className="text-muted">Sevierville TN, US</h5>
         <DegreeToggle
