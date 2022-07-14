@@ -1,10 +1,11 @@
 import { WEATHER_API, WEATHER_URL } from "../constants";
 
 class WeatherService {
-	async fetchFiveDayForeCast() {
+	async fetchFiveDayForeCast(zip) {
+		console.log(zip);
 		return new Promise( async (success, failure) => {
 			try {
-				const response = await fetch(`${WEATHER_URL}${WEATHER_API}`);
+				const response = await fetch(`${WEATHER_URL(zip)}${WEATHER_API}`);
 				if (response.ok) {
 					const json = await response.json();
 					const data = json.list
