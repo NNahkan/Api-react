@@ -11,7 +11,8 @@ class ForecastContainer extends React.Component {
     data: [],
     loading: false,
     error: false,
-	 degreeType: 'fahrenheit'
+	 degreeType: 'fahrenheit',
+	 zip: 37876
   };
 
   componentDidMount() {
