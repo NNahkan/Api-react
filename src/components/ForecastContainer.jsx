@@ -12,32 +12,39 @@ class ForecastContainer extends React.Component {
     loading: false,
     error: false,
     degreeType: "fahrenheit",
-    zip: 37760,
+    zip: '',
+	 city: ''
   };
 
+  apiFetching() {
+    this.setState({
+      loading: true,
+      error: false,
+    });
+    weather.fetchFiveDayForeCast(this.state.zip).then(
+      (res) => {
+        if (res && res.response.ok) {
+          this.setState({
+            data: res.data,
+				city: res.city,
+            loading: false,
+          });
+        } else {
+          this.setState({ loading: false });
+        }
+      },
+      (error) => {
+        console.log(error);
+        this.setState({
+          loading: false,
+          error: true,
+        });
+      }
+    );
+  }
+
   componentDidMount() {
-    this.setState({ loading: true });
-   if ( this.state.zip === 37760) {
-		weather.fetchFiveDayForeCast(this.state.zip).then(
-			(res) => {
-			  if (res && res.response.ok) {
-				 this.setState({
-					data: res.data,
-					loading: false,
-				 });
-			  } else {
-				 this.setState({ loading: false });
-			  }
-			},
-			(error) => {
-			  console.log(error);
-			  this.setState({
-				 loading: false,
-				 error: true,
-			  });
-			}
-		 );
-	}
+    this.apiFetching();
   }
 
   updateForecastDegree = ({ target: { value } }) => {
@@ -45,31 +52,37 @@ class ForecastContainer extends React.Component {
   };
 
   handleInput = ({ target: { value } }) => {
-    this.setState({ zip: value });
+    if (value > 9999) {
+		this.setState({ zip: value }
+		,() => this.apiFetching())
+	} else {
+		this.setState({ zip: value })
+	}
+		
   };
 
   handleSubmit = (e) => {
-	e.preventDefault();
-  }
+    e.preventDefault();
+  };
 
   render() {
-    const { loading, error, data, degreeType } = this.state;
+    const { loading, error, data, degreeType, city } = this.state;
     return (
       <div className="container mt-5">
         <h1 className="display-1 jumbotron bg-light py-5 mb-5">
           Forecast Container
         </h1>
-        <h5 className="text-muted">Sevierville TN, US</h5>
+        <h5 className="text-muted">{city}</h5>
         <form onSubmit={this.handleSubmit} action="">
           <label htmlFor="">
-            <h1>zip</h1>
+            <h1>Enter the zip code</h1>
             <input
               type="text"
               value={this.state.zip}
               onChange={this.handleInput}
+            //   onKeyPress={this.apiFetching()}
             />
           </label>
-          <input type="submit" value="ok" />
         </form>
         <DegreeToggle
           updateForecastDegree={this.updateForecastDegree}
