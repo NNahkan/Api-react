@@ -1,12 +1,14 @@
 import { WEATHER_API, WEATHER_URL } from "../constants";
 
 class WeatherService {
-	async fetchFiveDayForeCast() {
+	async fetchFiveDayForeCast(zip) {
+		console.log(zip);
 		return new Promise( async (success, failure) => {
 			try {
-				const response = await fetch(`${WEATHER_URL}${WEATHER_API}`);
+				const response = await fetch(`${WEATHER_URL(zip)}${WEATHER_API}`);
 				if (response.ok) {
 					const json = await response.json();
+					const city = json.city.name;
 					const data = json.list
 						.filter(day => day.dt_txt.includes( "00:00:00"))
 						.map(item => ({
@@ -16,7 +18,7 @@ class WeatherService {
 							imgId: item.weather[0].id,
 							desc: item.weather[0].description,
 						}));
-					success({ response, data})
+					success({ response, data, city})
 				} else {
 					failure({ error: "Invalid http request"})
 				}
